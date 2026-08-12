@@ -52,16 +52,16 @@
         <span class="nav-icon">📊</span> Home
       </button>
       <button class="nav-btn" data-tab="simulator">
-        <span class="nav-icon">🛡️</span> Real Web Shield
+        <span class="nav-icon">🛡️</span> Protected Launch
       </button>
       <button class="nav-btn" data-tab="connect">
-        <span class="nav-icon">🔌</span> Extension & Setup
+        <span class="nav-icon">🔌</span> Chrome Extension
       </button>
       <button class="nav-btn" data-tab="arcade">
         <span class="nav-icon">⚡</span> Arcade
       </button>
       <button class="nav-btn" data-tab="presentation">
-        <span class="nav-icon">📽️</span> Deck
+        <span class="nav-icon">📽️</span> Pitch Deck
       </button>
     </nav>
   </header>
@@ -162,87 +162,63 @@
 
     </section>
 
-    <!-- ==================== TAB 2: REAL WEB SHIELD LAUNCHER ==================== -->
+    <!-- ==================== TAB 2: PROTECTED SITE LAUNCHER ==================== -->
     <section class="tab-content" id="tab-simulator">
       <div class="section-header">
-        <h2>🛡️ Real Web Shield Launcher</h2>
+        <h2>🛡️ Protected Site Launcher</h2>
         <p>Launch YouTube or Instagram with live Intent Gate protection!</p>
       </div>
 
-      <div class="sim-controls card glass-card">
-        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">
-          Select a site to open with MindfulShift Intent Shield active:
+      <div class="sim-controls card glass-card" style="border-color: var(--accent-purple); box-shadow: 0 0 15px var(--accent-purple-glow);">
+        <p style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600; margin-bottom: 10px;">
+          Tap a button below to trigger the Intent Gate before opening the site:
         </p>
 
-        <div class="sim-selector">
-          <button class="btn-primary full-width" id="btnLaunchYT" style="background: linear-gradient(135deg, #FF0000, #CC0000);">▶️ Open Protected YouTube</button>
-          <button class="btn-primary full-width" id="btnLaunchIG" style="background: linear-gradient(135deg, #E1306C, #C13584);">📸 Open Protected Instagram</button>
-        </div>
-      </div>
-
-      <!-- Real Web Shield Active Viewport -->
-      <div class="phone-mockup" style="max-width: 100%; height: 500px;">
-        <div class="phone-screen" id="shieldScreen">
-          <div class="mock-feed-header">
-            <span id="shieldHeaderTitle">🛡️ MindfulShift Web Shield Active</span>
-            <span class="mock-live-badge">PROTECTED</span>
-          </div>
-
-          <iframe id="shieldIframe" src="about:blank" style="width: 100%; height: 100%; border: none; background: #000;"></iframe>
-
-          <!-- INJECTED MINDFULSHIFT OVERLAY -->
-          <div class="mindful-overlay" id="mindfulOverlay">
-            <div class="overlay-card glass-card">
-              <div class="overlay-badge">🧠 MINDFULSHIFT GATE</div>
-              <h3>Hold on a sec! 🛑</h3>
-              <p>Why are you opening short-form videos right now?</p>
-
-              <div class="intent-options">
-                <button class="intent-btn" data-intent="learning">
-                  📖 Watching specific tutorial video
-                </button>
-                <button class="intent-btn intent-bored" data-intent="bored">
-                  🥱 Just bored (30s Dopamine Swap)
-                </button>
-              </div>
-
-              <!-- Dynamic Dopamine Swap Box -->
-              <div class="swap-box hidden" id="swapBox">
-                <div class="swap-title">⚡ 30s Dopamine Swap!</div>
-                <p class="swap-question" id="swapQuestion">Loading micro-challenge...</p>
-                <div class="swap-answers" id="swapAnswers"></div>
-                <button class="btn-secondary hidden" id="btnResumeScroll" style="margin-top: 8px;">Continue to Video (10m Limit)</button>
-              </div>
-            </div>
-          </div>
+        <div class="sim-selector" style="flex-direction: column; gap: 10px;">
+          <button class="btn-primary full-width" id="btnLaunchYT" style="background: linear-gradient(135deg, #FF0000, #CC0000); min-height: 44px;">
+            ▶️ Launch Protected YouTube Shorts
+          </button>
+          <button class="btn-primary full-width" id="btnLaunchIG" style="background: linear-gradient(135deg, #E1306C, #C13584); min-height: 44px;">
+            📸 Launch Protected Instagram Reels
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- ==================== TAB 3: EXTENSION & SETUP ==================== -->
+    <!-- ==================== TAB 3: EXTENSION & SETUP GUIDE ==================== -->
     <section class="tab-content" id="tab-connect">
       <div class="section-header">
-        <h2>🔌 Extension & Mobile Setup</h2>
+        <h2>🔌 Chrome Extension & Setup</h2>
         <p>Get MindfulShift for real YouTube & Instagram browsing!</p>
       </div>
 
-      <!-- Real Extension Download Card -->
-      <div class="card glass-card connect-card" style="border-color: var(--accent-cyan); box-shadow: 0 0 20px var(--accent-cyan-glow);">
+      <!-- Real Desktop Extension Download Card -->
+      <div class="card glass-card connect-card" style="border-color: var(--accent-cyan); box-shadow: 0 0 20px var(--accent-cyan-glow); margin-bottom: 16px;">
         <div class="connect-head">
-          <span class="connect-icon">🧩</span>
-          <h3>Real Chrome Browser Extension</h3>
+          <span class="connect-icon">💻</span>
+          <h3>Desktop Chrome Browser Extension</h3>
         </div>
         <p>MindfulShift includes a <strong>real Manifest V3 Chrome Extension</strong> inside your GitHub repository that intercepts real YouTube Shorts & Instagram Reels!</p>
         
-        <ol class="setup-steps" style="margin-top: 8px;">
-          <li>Go to your <a href="https://github.com/maanasbhandari/mindfulshift" target="_blank" style="color: var(--accent-cyan); font-weight: 700;">GitHub Repository</a> ➔ click green <strong>Code</strong> button ➔ <strong>Download ZIP</strong>.</li>
-          <li>Open Chrome and type <code>chrome://extensions</code> ➔ turn ON <strong>Developer mode</strong>.</li>
-          <li>Click <strong>"Load unpacked"</strong> ➔ select the <code>extension</code> folder inside the ZIP!</li>
-        </ol>
-
-        <a href="https://github.com/maanasbhandari/mindfulshift/archive/refs/heads/main.zip" class="btn-primary full-width" style="text-decoration: none; margin-top: 10px;">
-          📥 Download Real Extension ZIP
+        <a href="https://github.com/maanasbhandari/mindfulshift/archive/refs/heads/main.zip" class="btn-primary full-width" style="text-decoration: none; margin: 10px 0; background: linear-gradient(135deg, var(--accent-cyan), #0284C7);">
+          📥 Download Extension ZIP File
         </a>
+
+        <div style="font-weight: 700; font-size: 0.85rem; margin-top: 10px; color: var(--accent-cyan);">How to install on computer:</div>
+        <ol class="setup-steps" style="margin-top: 6px;">
+          <li>Click the button above to <strong>download & unzip the ZIP file</strong>.</li>
+          <li>Open Google Chrome ➔ type <code>chrome://extensions</code> ➔ turn ON <strong>Developer mode</strong> (top-right toggle).</li>
+          <li>Click <strong>"Load unpacked"</strong> ➔ select the <code>extension</code> folder inside the unzipped project folder!</li>
+        </ol>
+      </div>
+
+      <!-- Mobile Setup Guide Card -->
+      <div class="card glass-card connect-card">
+        <div class="connect-head">
+          <span class="connect-icon">📱</span>
+          <h3>Mobile Phones (Android & iPhone)</h3>
+        </div>
+        <p>Use the <strong>"📲 Install App"</strong> button at the top of this website to add MindfulShift directly to your phone homescreen!</p>
       </div>
     </section>
 
@@ -312,6 +288,32 @@
     </section>
 
   </main>
+
+  <!-- INTENT GATE POPUP MODAL FOR PROTECTED LAUNCHER -->
+  <div class="mindful-overlay hidden" id="intentShieldModal" style="position: fixed; z-index: 99999;">
+    <div class="overlay-card glass-card" style="max-width: 340px; margin: 0 auto;">
+      <div class="overlay-badge">🧠 MINDFULSHIFT INTENT GATE</div>
+      <h3 id="shieldTargetTitle">Hold on a sec! 🛑</h3>
+      <p id="shieldTargetSub">Why are you opening short-form videos right now?</p>
+
+      <div class="intent-options">
+        <button class="intent-btn" id="btnShieldStudy">
+          📖 Watching specific tutorial video
+        </button>
+        <button class="intent-btn intent-bored" id="btnShieldBored">
+          🥱 Just bored (30s Dopamine Swap)
+        </button>
+      </div>
+
+      <!-- Dynamic Dopamine Swap Box -->
+      <div class="swap-box hidden" id="swapBoxShield">
+        <div class="swap-title">⚡ 30s Dopamine Swap!</div>
+        <p class="swap-question" id="swapQuestionShield">Loading micro-challenge...</p>
+        <div class="swap-answers" id="swapAnswersShield"></div>
+        <button class="btn-primary full-width hidden" id="btnShieldProceed" style="margin-top: 10px;">Proceed to Target Site (10m Timer)</button>
+      </div>
+    </div>
+  </div>
 
   <!-- iOS / Safari Fallback Helper Modal -->
   <div class="mindful-overlay hidden" id="iosInstallModal">
