@@ -6,6 +6,13 @@
   <title>MindfulShift - Mobile Focus Engine</title>
   <meta name="description" content="Break Instagram Reels & YouTube Shorts addiction with AI Intent Gates, dopamine swap micro-challenges, and gamified focus tracking.">
   
+  <!-- PWA Manifest & Theme -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#8B5CF6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MindfulShift">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +36,12 @@
       </div>
 
       <div class="header-actions">
+        <!-- 1-Click Auto Install Button -->
+        <button class="btn-install-header" id="btnHeaderInstall">
+          📲 Install App
+        </button>
         <div class="streak-badge">
-          <span>🔥</span> <span id="streakCount">7</span> Days
+          <span>🔥</span> <span id="streakCount">7</span>d
         </div>
       </div>
     </div>
@@ -66,6 +77,11 @@
         <div class="hero-text">
           <h1>Welcome, <span class="gradient-text">Focus Warrior</span> 👋</h1>
           <p>MindfulShift stopped 18 doomscroll traps today!</p>
+          
+          <!-- Big 1-Click Install Button -->
+          <button class="btn-primary full-width btn-hero-install" id="btnHeroInstall" style="margin-top: 10px;">
+            📲 1-Click Install App to Home Screen
+          </button>
         </div>
       </div>
 
@@ -232,54 +248,26 @@
       </div>
     </section>
 
-    <!-- ==================== TAB 3: CONNECT / SETUP GUIDE (UNIVERSAL BROWSER GUIDE) ==================== -->
+    <!-- ==================== TAB 3: CONNECT / SETUP GUIDE ==================== -->
     <section class="tab-content" id="tab-connect">
       <div class="section-header">
         <h2>⚡ Super Simple Setup</h2>
-        <p>Find your browser below to install MindfulShift on your home screen!</p>
+        <p>Click the button below to add MindfulShift directly to your phone!</p>
+      </div>
+
+      <!-- Main Auto Install Card -->
+      <div class="card glass-card connect-card" style="border-color: var(--accent-purple); box-shadow: 0 0 20px var(--accent-purple-glow);">
+        <div class="connect-head">
+          <span class="connect-icon">📲</span>
+          <h3>1-Click Auto Install</h3>
+        </div>
+        <p>Tap this button to immediately pop up the "Add to Home Screen" prompt on your phone!</p>
+        <button class="btn-primary full-width" id="btnTabInstall" style="margin-top: 8px;">
+          📲 Add MindfulShift to Home Screen Now
+        </button>
       </div>
 
       <div class="connect-list">
-
-        <!-- iPhone / Safari Card -->
-        <div class="card glass-card connect-card">
-          <div class="connect-head">
-            <span class="connect-icon">🍎</span>
-            <h3>iPhone & iPad (Safari Browser)</h3>
-          </div>
-          <ol class="setup-steps">
-            <li>Look at the bottom of Safari and tap the <strong>Share Button 📤</strong> <i>(square with arrow pointing up)</i>.</li>
-            <li>Scroll down the menu list and tap <strong>"Add to Home Screen" ➕</strong>.</li>
-            <li>Tap <strong>Add</strong> in top-right corner!</li>
-          </ol>
-        </div>
-
-        <!-- Android / Chrome Card -->
-        <div class="card glass-card connect-card">
-          <div class="connect-head">
-            <span class="connect-icon">📱</span>
-            <h3>Android Phones (Google Chrome)</h3>
-          </div>
-          <ol class="setup-steps">
-            <li>Look at top-right corner of Chrome and tap the <strong>3 Vertical Dots (⋮)</strong>.</li>
-            <li>Tap <strong>"Add to Home screen"</strong> (or <strong>"Install app"</strong>).</li>
-            <li>Tap <strong>Add</strong> to confirm!</li>
-          </ol>
-        </div>
-
-        <!-- Samsung Internet Card -->
-        <div class="card glass-card connect-card">
-          <div class="connect-head">
-            <span class="connect-icon">🪐</span>
-            <h3>Samsung Internet Browser</h3>
-          </div>
-          <ol class="setup-steps">
-            <li>Look at bottom-right corner and tap the <strong>3 Lines Menu (≡)</strong>.</li>
-            <li>Tap <strong>"+ Add page to"</strong>.</li>
-            <li>Select <strong>"Home screen"</strong>!</li>
-          </ol>
-        </div>
-
         <!-- Desktop Laptop Card -->
         <div class="card glass-card connect-card">
           <div class="connect-head">
@@ -292,7 +280,6 @@
             <li>Click <strong>"Load unpacked"</strong> ➔ select the <code>extension</code> folder!</li>
           </ol>
         </div>
-
       </div>
     </section>
 
@@ -362,6 +349,19 @@
     </section>
 
   </main>
+
+  <!-- iOS / Safari Fallback Helper Modal -->
+  <div class="mindful-overlay hidden" id="iosInstallModal">
+    <div class="overlay-card glass-card" style="max-width: 320px;">
+      <div class="overlay-badge">🍎 IPHONE / SAFARI GUIDE</div>
+      <h3>Add to Home Screen 📱</h3>
+      <p style="text-align: left; margin-top: 10px; line-height: 1.5;">
+        1. Tap the <strong>Share Button 📤</strong> at the bottom of Safari.<br>
+        2. Scroll down and tap <strong>"Add to Home Screen" ➕</strong>.
+      </p>
+      <button class="btn-primary full-width" id="btnCloseIosModal" style="margin-top: 14px;">Got It!</button>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="src/app.js"></script>
