@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "MindfulShift - AI Intent Gate & Anti-Doomscroll Engine",
+  "version": "1.0.0",
+  "description": "Intercepts Instagram Reels & YouTube Shorts with AI intentionality gates, dopamine swap challenges, and auto-grayscale scroll degradation.",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.instagram.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.instagram.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

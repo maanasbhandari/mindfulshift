@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MindfulShift Popup</title>
+  <style>
+    body {
+      width: 280px;
+      padding: 16px;
+      background: #0B0C10;
+      color: #F8FAFC;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      margin: 0;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .stat-row {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+    }
+    .val {
+      font-weight: 700;
+      color: #06B6D4;
+    }
+    .btn-dash {
+      width: 100%;
+      background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">🧠</div>
+    <div class="title">MindfulShift</div>
+  </div>
+
+  <div class="stat-row">
+    <span>Time Saved Today:</span>
+    <span class="val" id="popTime">1h 45m</span>
+  </div>
+
+  <div class="stat-row">
+    <span>Focus Score:</span>
+    <span class="val" id="popScore">88 / 100</span>
+  </div>
+
+  <button class="btn-dash" id="btnOpenDashboard">Open Web Dashboard 🚀</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
