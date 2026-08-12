@@ -29,46 +29,60 @@ function initProtectedLauncher() {
   const swapBoxShield = document.getElementById('swapBoxShield');
   const btnShieldProceed = document.getElementById('btnShieldProceed');
 
-  let currentTargetUrl = 'https://www.youtube.com/shorts';
+  let targetUrl = 'https://www.youtube.com/shorts';
+
+  function openShieldModal(title, url) {
+    targetUrl = url;
+    if (shieldTargetTitle) shieldTargetTitle.innerText = title;
+    if (intentShieldModal) {
+      intentShieldModal.style.display = 'flex';
+      intentShieldModal.classList.remove('hidden');
+    }
+    if (swapBoxShield) swapBoxShield.classList.add('hidden');
+  }
 
   if (btnLaunchYT) {
-    btnLaunchYT.addEventListener('click', () => {
-      currentTargetUrl = 'https://www.youtube.com/shorts';
-      if (shieldTargetTitle) shieldTargetTitle.innerText = '▶️ YouTube Shorts Shield';
-      if (intentShieldModal) intentShieldModal.classList.remove('hidden');
-      if (swapBoxShield) swapBoxShield.classList.add('hidden');
-    });
+    btnLaunchYT.onclick = (e) => {
+      e.preventDefault();
+      openShieldModal('▶️ YouTube Shorts Shield', 'https://www.youtube.com/shorts');
+    };
   }
 
   if (btnLaunchIG) {
-    btnLaunchIG.addEventListener('click', () => {
-      currentTargetUrl = 'https://www.instagram.com/reels/';
-      if (shieldTargetTitle) shieldTargetTitle.innerText = '📸 Instagram Reels Shield';
-      if (intentShieldModal) intentShieldModal.classList.remove('hidden');
-      if (swapBoxShield) swapBoxShield.classList.add('hidden');
-    });
+    btnLaunchIG.onclick = (e) => {
+      e.preventDefault();
+      openShieldModal('📸 Instagram Reels Shield', 'https://www.instagram.com/reels/');
+    };
   }
 
   if (btnShieldStudy) {
-    btnShieldStudy.addEventListener('click', () => {
-      alert('✅ Learning Intent Registered! Opening site with a 10-minute session limit.');
-      if (intentShieldModal) intentShieldModal.classList.add('hidden');
-      window.open(currentTargetUrl, '_blank');
-    });
+    btnShieldStudy.onclick = (e) => {
+      e.preventDefault();
+      if (intentShieldModal) {
+        intentShieldModal.style.display = 'none';
+        intentShieldModal.classList.add('hidden');
+      }
+      window.location.href = targetUrl;
+    };
   }
 
   if (btnShieldBored) {
-    btnShieldBored.addEventListener('click', () => {
+    btnShieldBored.onclick = (e) => {
+      e.preventDefault();
       if (swapBoxShield) swapBoxShield.classList.remove('hidden');
       loadSwapQuizShield();
-    });
+    };
   }
 
   if (btnShieldProceed) {
-    btnShieldProceed.addEventListener('click', () => {
-      if (intentShieldModal) intentShieldModal.classList.add('hidden');
-      window.open(currentTargetUrl, '_blank');
-    });
+    btnShieldProceed.onclick = (e) => {
+      e.preventDefault();
+      if (intentShieldModal) {
+        intentShieldModal.style.display = 'none';
+        intentShieldModal.classList.add('hidden');
+      }
+      window.location.href = targetUrl;
+    };
   }
 }
 
@@ -86,14 +100,14 @@ function loadSwapQuizShield() {
       const btn = document.createElement('button');
       btn.className = 'answer-btn';
       btn.innerText = `${index + 1}. ${ans}`;
-      btn.addEventListener('click', () => {
+      btn.onclick = (e) => {
+        e.preventDefault();
         if (index === quiz.correct) {
           btn.style.background = 'rgba(16, 185, 129, 0.3)';
           btn.style.borderColor = '#10B981';
           if (swapQuestionShield) swapQuestionShield.innerText = '🎯 Perfect! Dopamine Boost Earned (+30 pts)';
           if (btnShieldProceed) btnShieldProceed.classList.remove('hidden');
 
-          // Update Dashboard Stats
           const valDopamineSaved = document.getElementById('valDopamineSaved');
           if (valDopamineSaved) {
             const curVal = parseInt(valDopamineSaved.innerText) || 420;
@@ -103,7 +117,7 @@ function loadSwapQuizShield() {
           btn.style.background = 'rgba(239, 68, 68, 0.3)';
           btn.style.borderColor = '#EF4444';
         }
-      });
+      };
       swapAnswersShield.appendChild(btn);
     });
   }
