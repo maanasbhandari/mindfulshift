@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MINDFULSHIFT MAIN APPLICATION JS (src/app.js)
+   MINDFULSHIFT MAIN APPLICATION JS (src/app.js) - MOBILE OPTIMIZED
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,74 +24,90 @@ function initTabs() {
       const targetEl = document.getElementById(`tab-${targetTab}`);
       if (targetEl) {
         targetEl.classList.add('active');
+        // Re-render chart when switching to dashboard tab
+        if (targetTab === 'dashboard') {
+          setTimeout(initTimeSavedChart, 50);
+        }
       }
     });
   });
 }
 
-// Render Focus vs. Doomscroll Time Chart on HTML5 Canvas
+// Dynamically Resizable Focus vs. Doomscroll Chart on HTML5 Canvas
 function initTimeSavedChart() {
   const canvas = document.getElementById('timeSavedChart');
   if (!canvas) return;
 
-  const ctx = canvas.getContext('2d');
+  function renderChart() {
+    const ctx = canvas.getContext('2d');
+    const container = canvas.parentElement;
+    if (!container) return;
 
-  // Device pixel ratio scaling for crisp render
-  const dpr = window.devicePixelRatio || 1;
-  const rect = canvas.getBoundingClientRect();
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
-  ctx.scale(dpr, dpr);
+    const rect = container.getBoundingClientRect();
+    if (rect.width === 0) return;
 
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const focusTime = [45, 60, 90, 75, 110, 95, 105]; // minutes saved
-  const scrollTime = [80, 50, 30, 40, 20, 25, 15];  // doomscroll minutes
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
 
-  const chartWidth = rect.width;
-  const chartHeight = rect.height;
-  const paddingLeft = 40;
-  const paddingBottom = 30;
-  const paddingTop = 20;
+    const chartWidth = rect.width;
+    const chartHeight = rect.height;
 
-  const graphWidth = chartWidth - paddingLeft - 20;
-  const graphHeight = chartHeight - paddingBottom - paddingTop;
+    const isMobile = chartWidth < 500;
+    const paddingLeft = isMobile ? 32 : 40;
+    const paddingBottom = isMobile ? 22 : 28;
+    const paddingTop = 15;
+    const paddingRight = 12;
 
-  const maxVal = 120;
-  const stepX = graphWidth / (days.length - 1);
+    const graphWidth = chartWidth - paddingLeft - paddingRight;
+    const graphHeight = chartHeight - paddingBottom - paddingTop;
 
-  // Clear Canvas
-  ctx.clearRect(0, 0, chartWidth, chartHeight);
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const focusTime = [45, 60, 90, 75, 110, 95, 105];
+    const scrollTime = [80, 50, 30, 40, 20, 25, 15];
 
-  // Draw Grid Lines & Y-Labels
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-  ctx.fillStyle = '#64748B';
-  ctx.font = '11px Plus Jakarta Sans';
-  ctx.textAlign = 'right';
+    const maxVal = 120;
+    const stepX = graphWidth / (days.length - 1);
 
-  for (let i = 0; i <= 4; i++) {
-    const yVal = Math.round((maxVal / 4) * i);
-    const yPos = chartHeight - paddingBottom - (yVal / maxVal) * graphHeight;
+    // Clear Canvas
+    ctx.clearRect(0, 0, chartWidth, chartHeight);
 
-    ctx.beginPath();
-    ctx.moveTo(paddingLeft, yPos);
-    ctx.lineTo(chartWidth - 20, yPos);
-    ctx.stroke();
+    // Draw Grid Lines & Y-Labels
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+    ctx.fillStyle = '#94A3B8';
+    ctx.font = isMobile ? '10px Plus Jakarta Sans' : '11px Plus Jakarta Sans';
+    ctx.textAlign = 'right';
 
-    ctx.fillText(`${yVal}m`, paddingLeft - 8, yPos + 4);
+    for (let i = 0; i <= 4; i++) {
+      const yVal = Math.round((maxVal / 4) * i);
+      const yPos = chartHeight - paddingBottom - (yVal / maxVal) * graphHeight;
+
+      ctx.beginPath();
+      ctx.moveTo(paddingLeft, yPos);
+      ctx.lineTo(chartWidth - paddingRight, yPos);
+      ctx.stroke();
+
+      ctx.fillText(`${yVal}m`, paddingLeft - 5, yPos + 3);
+    }
+
+    // Draw X Axis Labels
+    ctx.textAlign = 'center';
+    days.forEach((day, index) => {
+      const xPos = paddingLeft + index * stepX;
+      ctx.fillText(day, xPos, chartHeight - 5);
+    });
+
+    // Draw Focus Saved Line (Purple Gradient)
+    drawGradientLine(ctx, focusTime, paddingLeft, chartHeight, paddingBottom, graphHeight, maxVal, stepX, '#8B5CF6', 'rgba(139, 92, 246, 0.25)');
+
+    // Draw Doomscroll Line (Pink Gradient)
+    drawGradientLine(ctx, scrollTime, paddingLeft, chartHeight, paddingBottom, graphHeight, maxVal, stepX, '#EC4899', 'rgba(236, 72, 153, 0.15)');
   }
 
-  // Draw X Labels
-  ctx.textAlign = 'center';
-  days.forEach((day, index) => {
-    const xPos = paddingLeft + index * stepX;
-    ctx.fillText(day, xPos, chartHeight - 8);
-  });
-
-  // Draw Focus Saved Line (Purple Gradient)
-  drawGradientLine(ctx, focusTime, paddingLeft, chartHeight, paddingBottom, graphHeight, maxVal, stepX, '#8B5CF6', 'rgba(139, 92, 246, 0.2)');
-
-  // Draw Doomscroll Line (Pink/Red Gradient)
-  drawGradientLine(ctx, scrollTime, paddingLeft, chartHeight, paddingBottom, graphHeight, maxVal, stepX, '#EC4899', 'rgba(236, 72, 153, 0.1)');
+  renderChart();
+  window.removeEventListener('resize', renderChart);
+  window.addEventListener('resize', renderChart);
 }
 
 function drawGradientLine(ctx, data, paddingLeft, chartHeight, paddingBottom, graphHeight, maxVal, stepX, strokeColor, fillColor) {
@@ -106,7 +122,7 @@ function drawGradientLine(ctx, data, paddingLeft, chartHeight, paddingBottom, gr
   });
 
   ctx.strokeStyle = strokeColor;
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 2.5;
   ctx.stroke();
 
   // Fill Area below
