@@ -1,6 +1,3 @@
-# Ignore presentation slide deck as requested
-presentation.html
-
 # Dependencies & Build output
 node_modules/
 dist/
