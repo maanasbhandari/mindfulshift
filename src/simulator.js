@@ -1,21 +1,16 @@
 /* ==========================================================================
-   MINDFULSHIFT SIMULATOR JS (src/simulator.js)
+   MINDFULSHIFT SIMULATOR & WEB SHIELD (src/simulator.js)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initSimulator();
+  initWebShield();
 });
 
 const sampleQuizzes = [
   {
-    q: "What does CSS property `backdrop-filter: blur()` do?",
-    answers: ["Blurs content behind an element", "Blurs the element text", "Makes element invisible", "Rotates background"],
+    q: "What key mindset prevents endless doomscrolling?",
+    answers: ["Setting intentional time limits & micro-resets", "Scrolling until 3 AM", "Disabling all notifications", "Ignoring time completely"],
     correct: 0
-  },
-  {
-    q: "Which keyword in JavaScript declares a block-scoped variable?",
-    answers: ["var", "let", "global", "static"],
-    correct: 1
   },
   {
     q: "In high-yield focus techniques, what is the default Pomodoro ratio?",
@@ -24,43 +19,38 @@ const sampleQuizzes = [
   }
 ];
 
-function initSimulator() {
+function initWebShield() {
+  const btnLaunchYT = document.getElementById('btnLaunchYT');
+  const btnLaunchIG = document.getElementById('btnLaunchIG');
   const btnTriggerSim = document.getElementById('btnTriggerSim');
-  const btnSimInsta = document.getElementById('btnSimInsta');
-  const btnSimYT = document.getElementById('btnSimYT');
-  const mockFeedTitle = document.getElementById('mockFeedTitle');
+  const shieldIframe = document.getElementById('shieldIframe');
   const mindfulOverlay = document.getElementById('mindfulOverlay');
-  const mockVideoPlayer = document.getElementById('mockVideoPlayer');
+  const shieldHeaderTitle = document.getElementById('shieldHeaderTitle');
   const intentBtns = document.querySelectorAll('.intent-btn');
   const swapBox = document.getElementById('swapBox');
-  const roastBox = document.getElementById('roastBox');
 
-  let currentPlatform = 'instagram';
+  if (btnLaunchYT) {
+    btnLaunchYT.addEventListener('click', () => {
+      if (shieldHeaderTitle) shieldHeaderTitle.innerText = '🛡️ YouTube Shorts Shield Active';
+      if (shieldIframe) shieldIframe.src = 'https://www.youtube.com/embed/';
+      if (mindfulOverlay) mindfulOverlay.classList.remove('hidden');
+    });
+  }
 
-  // Toggle platform switch
-  btnSimInsta.addEventListener('click', () => {
-    btnSimInsta.classList.add('active');
-    btnSimYT.classList.remove('active');
-    currentPlatform = 'instagram';
-    mockFeedTitle.innerText = '📸 Instagram Reels';
-    mockVideoPlayer.style.background = 'linear-gradient(180deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%)';
-  });
+  if (btnLaunchIG) {
+    btnLaunchIG.addEventListener('click', () => {
+      if (shieldHeaderTitle) shieldHeaderTitle.innerText = '🛡️ Instagram Shield Active';
+      if (shieldIframe) shieldIframe.src = 'https://www.instagram.com/';
+      if (mindfulOverlay) mindfulOverlay.classList.remove('hidden');
+    });
+  }
 
-  btnSimYT.addEventListener('click', () => {
-    btnSimYT.classList.add('active');
-    btnSimInsta.classList.remove('active');
-    currentPlatform = 'youtube';
-    mockFeedTitle.innerText = '▶️ YouTube Shorts';
-    mockVideoPlayer.style.background = 'linear-gradient(180deg, #1F1F1F 0%, #FF0000 100%)';
-  });
-
-  // Trigger Simulation Overlay
-  btnTriggerSim.addEventListener('click', () => {
-    mindfulOverlay.classList.remove('hidden');
-    swapBox.classList.add('hidden');
-    roastBox.classList.add('hidden');
-    mockVideoPlayer.classList.remove('grayscale-active');
-  });
+  if (btnTriggerSim) {
+    btnTriggerSim.addEventListener('click', () => {
+      if (mindfulOverlay) mindfulOverlay.classList.remove('hidden');
+      if (swapBox) swapBox.classList.add('hidden');
+    });
+  }
 
   // Handle Intent Button Clicks
   intentBtns.forEach(btn => {
@@ -68,27 +58,13 @@ function initSimulator() {
       const intentType = btn.getAttribute('data-intent');
 
       if (intentType === 'bored') {
-        // Trigger 30s Dopamine Swap Challenge
-        swapBox.classList.remove('hidden');
+        if (swapBox) swapBox.classList.remove('hidden');
         loadSwapQuiz();
       } else {
-        // Learning intent selected ➔ grant 10 min session
-        alert('✅ Learning Intent Registered! MindfulShift set a 10-minute focus session timer.');
-        mindfulOverlay.classList.add('hidden');
+        alert('✅ Learning Intent Registered! 10-minute focus session granted.');
+        if (mindfulOverlay) mindfulOverlay.classList.add('hidden');
       }
     });
-  });
-
-  // Check Mode selection
-  const simModeSelect = document.getElementById('simModeSelect');
-  simModeSelect.addEventListener('change', () => {
-    if (simModeSelect.value === 'hardcore') {
-      mockVideoPlayer.classList.add('grayscale-active');
-      roastBox.classList.remove('hidden');
-    } else {
-      mockVideoPlayer.classList.remove('grayscale-active');
-      roastBox.classList.add('hidden');
-    }
   });
 }
 
@@ -99,33 +75,34 @@ function loadSwapQuiz() {
 
   const quiz = sampleQuizzes[Math.floor(Math.random() * sampleQuizzes.length)];
 
-  swapQuestion.innerText = quiz.q;
-  swapAnswers.innerHTML = '';
+  if (swapQuestion) swapQuestion.innerText = quiz.q;
+  if (swapAnswers) {
+    swapAnswers.innerHTML = '';
+    quiz.answers.forEach((ans, index) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn';
+      btn.innerText = `${index + 1}. ${ans}`;
+      btn.addEventListener('click', () => {
+        if (index === quiz.correct) {
+          btn.style.background = 'rgba(16, 185, 129, 0.3)';
+          btn.style.borderColor = '#10B981';
+          if (swapQuestion) swapQuestion.innerText = '🎯 Perfect! Dopamine Boost Earned (+30 pts)';
+          if (btnResumeScroll) btnResumeScroll.classList.remove('hidden');
 
-  quiz.answers.forEach((ans, index) => {
-    const btn = document.createElement('button');
-    btn.className = 'answer-btn';
-    btn.innerText = `${index + 1}. ${ans}`;
-    btn.addEventListener('click', () => {
-      if (index === quiz.correct) {
-        btn.style.background = 'rgba(16, 185, 129, 0.3)';
-        btn.style.borderColor = '#10B981';
-        swapQuestion.innerText = '🎯 Perfect! Dopamine Boost Earned (+30 pts)';
-        if (btnResumeScroll) btnResumeScroll.classList.remove('hidden');
-
-        // Update Dashboard Stats
-        const valDopamineSaved = document.getElementById('valDopamineSaved');
-        if (valDopamineSaved) {
-          const curVal = parseInt(valDopamineSaved.innerText) || 420;
-          valDopamineSaved.innerText = `${curVal + 30} pts`;
+          // Update Dashboard Stats
+          const valDopamineSaved = document.getElementById('valDopamineSaved');
+          if (valDopamineSaved) {
+            const curVal = parseInt(valDopamineSaved.innerText) || 420;
+            valDopamineSaved.innerText = `${curVal + 30} pts`;
+          }
+        } else {
+          btn.style.background = 'rgba(239, 68, 68, 0.3)';
+          btn.style.borderColor = '#EF4444';
         }
-      } else {
-        btn.style.background = 'rgba(239, 68, 68, 0.3)';
-        btn.style.borderColor = '#EF4444';
-      }
+      });
+      swapAnswers.appendChild(btn);
     });
-    swapAnswers.appendChild(btn);
-  });
+  }
 
   if (btnResumeScroll) {
     btnResumeScroll.addEventListener('click', () => {
