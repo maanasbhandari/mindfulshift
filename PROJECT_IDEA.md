@@ -19,7 +19,7 @@ Unlike traditional app-blockers—which rely on rigid restriction that users qui
 
 ---
 
-##💡 The MindfulShift Solution
+## 💡 The MindfulShift Solution
 MindfulShift works as a smart "speed bump" for your digital habits across **Desktop Web Browsers** and **Mobile Devices**:
 
 ### 1. Intentionality Gate (Cognitive Pause)
@@ -49,17 +49,22 @@ Track your progress with real-time metrics:
 
 ---
 
-## 🌐 Cross-Platform Connectivity (Browser & Mobile)
+## ⚡ Super Simple Setup Guide (For Everyone!)
 
-### Desktop Browsers (Chrome, Edge, Brave, Firefox)
-- **Manifest V3 Extension**: Instantly intercepts `instagram.com/reels/` and `youtube.com/shorts/` DOM elements using lightweight MutationObservers and injected shadow DOM modals.
+### 💻 Laptop & Desktop Computers (Chrome, Edge, Brave)
+1. **Download Code**: Go to [github.com/maanasbhandari/mindfulshift](https://github.com/maanasbhandari/mindfulshift) ➔ click green **Code** button ➔ click **Download ZIP** (and unzip it!).
+2. **Open Extensions**: Open Chrome and type `chrome://extensions` in the URL bar. Turn ON **"Developer mode"** in the top-right corner.
+3. **Load Unpacked**: Click **"Load unpacked"** and select the `extension` folder!
 
-### Mobile Devices (Android & iOS)
-- **Android**: 
-  - Progressive Web App (PWA) with Home Screen quick shortcut.
-  - Accessibility Service Integration / Custom DNS sinkhole rule (e.g. NextDNS / AdGuard DNS rewrite for short-form video endpoints).
-- **iOS**:
-  - Safari Web Extension & iOS Shortcuts integration for automated intent prompts upon opening Instagram or YouTube apps.
+### 📱 Android Phones & Tablets
+1. **Open Site**: Open [maanasbhandari.github.io/mindfulshift](https://maanasbhandari.github.io/mindfulshift/) in Chrome on your phone.
+2. **Tap 3 Dots**: Tap the **3 dots (⋮)** menu in Chrome top-right corner.
+3. **Add to Home Screen**: Tap **"Add to Home screen"** to install MindfulShift as a phone app!
+
+### 🍎 iPhone & iPad (iOS)
+1. **Open Site**: Open [maanasbhandari.github.io/mindfulshift](https://maanasbhandari.github.io/mindfulshift/) in Safari on your iPhone.
+2. **Tap Share**: Tap the **Share** button (square with an up arrow 📤) at the bottom.
+3. **Add to Home Screen**: Scroll down and tap **"Add to Home Screen"**!
 
 ---
 
@@ -71,11 +76,3 @@ Track your progress with real-time metrics:
 | **Data Visualization** | HTML5 Canvas-driven custom chart engine (Time Saved & Attention Analytics) |
 | **Browser Extension** | Chrome Extension Manifest V3, Content Scripts, Shadow DOM injection, Chrome Storage API |
 | **State & Storage** | LocalStorage API, Chrome Storage Local, Session Storage |
-
----
-
-## 🏆 Why MindfulShift Wins Hackathons
-1. **Immediate Wow Factor**: Live interactive feed simulator allows judges to test the interception behavior directly inside the dashboard without installing software.
-2. **High Social & Market Impact**: Directly addresses the universal struggle of social media addiction affecting millions of students and professionals.
-3. **Complete Ecosystem**: Includes Web Dashboard, Live Simulator, Chrome Extension, Mobile Setup Guide, and built-in Pitch Deck.
-4. **Behavioral Psychology Grounding**: Built on proven cognitive-behavioral principles (habit loop modification, implementation intentions, friction engineering).
