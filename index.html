@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindfulShift - AI Intentionality Gate & Focus Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MindfulShift - Mobile Focus Engine</title>
   <meta name="description" content="Break Instagram Reels & YouTube Shorts addiction with AI Intent Gates, dopamine swap micro-challenges, and gamified focus tracking.">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Styles -->
   <link rel="stylesheet" href="style.css">
@@ -25,290 +25,258 @@
     <div class="header-container">
       <div class="brand">
         <div class="brand-logo">🧠</div>
-        <div class="brand-text">
-          <span class="brand-name">MindfulShift</span>
-          <span class="brand-tag">AI Focus Engine</span>
-        </div>
+        <div class="brand-name">MindfulShift</div>
       </div>
-
-      <nav class="nav-menu">
-        <button class="nav-btn active" data-tab="dashboard">
-          <span class="nav-icon">📊</span> Dashboard
-        </button>
-        <button class="nav-btn" data-tab="simulator">
-          <span class="nav-icon">🎮</span> Live Interceptor Demo
-        </button>
-        <button class="nav-btn" data-tab="connect">
-          <span class="nav-icon">🔌</span> Simple Setup Guide
-        </button>
-        <button class="nav-btn" data-tab="arcade">
-          <span class="nav-icon">⚡</span> Micro-Arcade
-        </button>
-        <button class="nav-btn" data-tab="presentation">
-          <span class="nav-icon">📽️</span> Pitch Deck
-        </button>
-      </nav>
 
       <div class="header-actions">
-        <div class="streak-badge" title="Daily Mindful Streak">
-          <span class="streak-fire">🔥</span>
-          <span class="streak-count" id="streakCount">7</span> Days
+        <div class="streak-badge">
+          <span>🔥</span> <span id="streakCount">7</span> Days
         </div>
-        <button class="btn-primary" id="btnQuickConnect">Connect Device</button>
       </div>
     </div>
+
+    <!-- Mobile Scrollable Tab Bar -->
+    <nav class="nav-menu">
+      <button class="nav-btn active" data-tab="dashboard">
+        <span class="nav-icon">📊</span> Home
+      </button>
+      <button class="nav-btn" data-tab="simulator">
+        <span class="nav-icon">🎮</span> Live Demo
+      </button>
+      <button class="nav-btn" data-tab="connect">
+        <span class="nav-icon">🔌</span> Setup Guide
+      </button>
+      <button class="nav-btn" data-tab="arcade">
+        <span class="nav-icon">⚡</span> Arcade
+      </button>
+      <button class="nav-btn" data-tab="presentation">
+        <span class="nav-icon">📽️</span> Deck
+      </button>
+    </nav>
   </header>
 
   <!-- Main View Container -->
   <main class="app-viewport">
 
-    <!-- ==================== TAB 1: DASHBOARD ==================== -->
+    <!-- ==================== TAB 1: HOME / DASHBOARD ==================== -->
     <section class="tab-content active" id="tab-dashboard">
-      <div class="dashboard-hero">
-        <div class="welcome-text">
-          <h1>Welcome back, <span class="gradient-text">Focus Warrior</span> 👋</h1>
-          <p>Your AI Intent Gate has saved you from 18 doomscroll traps today!</p>
+      
+      <!-- Compact Mobile Hero Banner -->
+      <div class="mobile-hero-card">
+        <div class="hero-text">
+          <h1>Welcome, <span class="gradient-text">Focus Warrior</span> 👋</h1>
+          <p>MindfulShift stopped 18 doomscroll traps today!</p>
         </div>
-        <div class="hero-stats">
-          <div class="stat-card">
-            <div class="stat-header">
-              <span class="stat-icon">⏱️</span> Time Saved Today
+      </div>
+
+      <!-- 2x2 Metric Cards Grid -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-head">
+            <span>⏱️</span> Time Saved
+          </div>
+          <div class="metric-val text-green" id="valTimeSaved">1h 45m</div>
+          <div class="metric-sub">↑ 32m vs yesterday</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-head">
+            <span>🎯</span> Focus Score
+          </div>
+          <div class="metric-val text-cyan" id="valFocusScore">88/100</div>
+          <div class="metric-sub">Optimal Zone</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-head">
+            <span>⚡</span> Dopamine Saved
+          </div>
+          <div class="metric-val text-purple" id="valDopamineSaved">420 pts</div>
+          <div class="metric-sub">14 Quizzes solved</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-head">
+            <span>🔥</span> Mindful Streak
+          </div>
+          <div class="metric-val text-amber">7 Days</div>
+          <div class="metric-sub">Active Streak</div>
+        </div>
+      </div>
+
+      <!-- Interception Breakdown Section (Clean, Non-Overlapping Meters) -->
+      <div class="card glass-card breakdown-card">
+        <div class="card-header">
+          <h3>🔥 Today's Interceptions</h3>
+          <span class="badge badge-purple">Live</span>
+        </div>
+
+        <div class="breakdown-list">
+          <div class="breakdown-item">
+            <div class="app-info">
+              <span>📸</span>
+              <span>Instagram Reels</span>
             </div>
-            <div class="stat-value" id="valTimeSaved">1h 45m</div>
-            <div class="stat-sub text-green">↑ 32m more than yesterday</div>
+            <div class="app-bar-wrap">
+              <div class="app-bar bar-instagram" style="width: 65%;"></div>
+            </div>
+            <span class="app-val">12 Stopped</span>
           </div>
 
-          <div class="stat-card">
-            <div class="stat-header">
-              <span class="stat-icon">🎯</span> Focus Health Score
+          <div class="breakdown-item">
+            <div class="app-info">
+              <span>▶️</span>
+              <span>YouTube Shorts</span>
             </div>
-            <div class="stat-value" id="valFocusScore">88 / 100</div>
-            <div class="stat-sub text-cyan">Optimal Intent Zone</div>
+            <div class="app-bar-wrap">
+              <div class="app-bar bar-youtube" style="width: 45%;"></div>
+            </div>
+            <span class="app-val">8 Stopped</span>
           </div>
+        </div>
 
-          <div class="stat-card">
-            <div class="stat-header">
-              <span class="stat-icon">⚡</span> Dopamine Saved
-            </div>
-            <div class="stat-value" id="valDopamineSaved">420 pts</div>
-            <div class="stat-sub text-purple">14 Micro-challenges completed</div>
+        <!-- AI Coach Insight Banner -->
+        <div class="ai-insight-box">
+          <div class="ai-avatar">🤖</div>
+          <div class="ai-msg">
+            <strong>AI Coach:</strong> You get most tempted around 3:00 PM. MindfulShift successfully swapped 5 scroll impulses with fast Coding Quizzes!
           </div>
         </div>
       </div>
 
-      <!-- Charts & Analytics Grid -->
-      <div class="dashboard-grid">
-        <div class="card glass-card chart-card">
-          <div class="card-header">
-            <h3>📈 Focus vs. Doomscroll Time (Last 7 Days)</h3>
-            <div class="card-actions">
-              <span class="badge badge-purple">Real-time Tracker</span>
-            </div>
-          </div>
-          <div class="chart-container">
-            <canvas id="timeSavedChart" width="600" height="240"></canvas>
-          </div>
-        </div>
-
-        <div class="card glass-card heatmap-card">
-          <div class="card-header">
-            <h3>🔥 Interception Breakdown</h3>
-          </div>
-          <div class="breakdown-list">
-            <div class="breakdown-item">
-              <div class="app-info">
-                <span class="app-icon">📸</span>
-                <span class="app-name">Instagram Reels</span>
-              </div>
-              <div class="app-bar-wrap">
-                <div class="app-bar bar-instagram" style="width: 65%;"></div>
-              </div>
-              <span class="app-val">12 Intercepts</span>
-            </div>
-
-            <div class="breakdown-item">
-              <div class="app-info">
-                <span class="app-icon">▶️</span>
-                <span class="app-name">YouTube Shorts</span>
-              </div>
-              <div class="app-bar-wrap">
-                <div class="app-bar bar-youtube" style="width: 45%;"></div>
-              </div>
-              <span class="app-val">8 Intercepts</span>
-            </div>
-          </div>
-
-          <div class="ai-insight-box">
-            <div class="ai-avatar">🤖</div>
-            <div class="ai-msg">
-              <strong>AI Insight:</strong> You get most tempted by Instagram Reels around 3:00 PM. MindfulShift successfully swapped 5 scroll impulses with fast Coding Quizzes!
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- ==================== TAB 2: LIVE INTERCEPTOR SIMULATOR ==================== -->
     <section class="tab-content" id="tab-simulator">
       <div class="section-header">
-        <h2>🎮 Live Feed Interceptor Demo</h2>
-        <p>Test how MindfulShift intercepts Instagram Reels & YouTube Shorts in real-time!</p>
+        <h2>🎮 Live Interceptor Demo</h2>
+        <p>Test how MindfulShift intercepts Reel/Short video playback!</p>
       </div>
 
-      <div class="simulator-layout">
-        <!-- Simulator Controls -->
-        <div class="sim-controls card glass-card">
-          <h3>⚙️ Interceptor Settings</h3>
-
-          <div class="form-group">
-            <label>Select Platform Simulator:</label>
-            <div class="sim-selector">
-              <button class="btn-toggle active" id="btnSimInsta">📸 Instagram Reels</button>
-              <button class="btn-toggle" id="btnSimYT">▶️ YouTube Shorts</button>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Strictness Mode:</label>
-            <select id="simModeSelect" class="custom-select">
-              <option value="balanced">Balanced (Intent Gate + Dopamine Swap)</option>
-              <option value="hardcore">Hardcore Anti-Doomscroll (Grayscale & AI Roast)</option>
-              <option value="zen">Zen Mode (Soft Nudge & Breathing)</option>
-            </select>
-          </div>
-
-          <button class="btn-primary full-width" id="btnTriggerSim">
-            🚀 Simulate Feed Interception
-          </button>
-
-          <div class="sim-info-box">
-            <span>💡 <strong>Tip for Hackathon Judges:</strong> Click "Simulate Feed Interception" to see the live overlay prompt that intercepts video playback.</span>
-          </div>
+      <div class="sim-controls card glass-card">
+        <div class="sim-selector">
+          <button class="btn-toggle active" id="btnSimInsta">📸 Instagram</button>
+          <button class="btn-toggle" id="btnSimYT">▶️ YouTube</button>
         </div>
 
-        <!-- Phone Feed Mockup Viewport -->
-        <div class="phone-mockup">
-          <div class="phone-notch"></div>
-          <div class="phone-screen" id="phoneScreen">
-            <div class="mock-feed-header">
-              <span id="mockFeedTitle">📸 Instagram Reels</span>
-              <span class="mock-live-badge">LIVE FEED</span>
+        <div class="form-group">
+          <select id="simModeSelect" class="custom-select">
+            <option value="balanced">Balanced Mode (Gate + Dopamine Swap)</option>
+            <option value="hardcore">Hardcore Mode (Grayscale & AI Roast)</option>
+            <option value="zen">Zen Mode (Soft Nudge)</option>
+          </select>
+        </div>
+
+        <button class="btn-primary full-width" id="btnTriggerSim">
+          🚀 Test Interception Overlay
+        </button>
+      </div>
+
+      <!-- Phone Mockup Frame -->
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" id="phoneScreen">
+          <div class="mock-feed-header">
+            <span id="mockFeedTitle">📸 Instagram Reels</span>
+            <span class="mock-live-badge">LIVE FEED</span>
+          </div>
+          
+          <div class="mock-video-player" id="mockVideoPlayer">
+            <div class="mock-video-content">
+              <div class="video-overlay-info">
+                <span class="channel-tag">@viral_scroller</span>
+                <p class="video-desc">Endless video scrolling trap... #reels #shorts</p>
+              </div>
             </div>
-            
-            <div class="mock-video-player" id="mockVideoPlayer">
-              <div class="mock-video-content">
-                <div class="video-overlay-info">
-                  <span class="channel-tag">@viral_scroller</span>
-                  <p class="video-desc">Endless video scrolling trap... #viral #reels #shorts</p>
+
+            <!-- INJECTED MINDFULSHIFT OVERLAY -->
+            <div class="mindful-overlay" id="mindfulOverlay">
+              <div class="overlay-card glass-card">
+                <div class="overlay-badge">🧠 MINDFULSHIFT GATE</div>
+                <h3>Hold on a sec! 🛑</h3>
+                <p>Why are you opening short-form videos right now?</p>
+
+                <div class="intent-options">
+                  <button class="intent-btn" data-intent="learning">
+                    📖 Watching specific tutorial video
+                  </button>
+                  <button class="intent-btn intent-bored" data-intent="bored">
+                    🥱 Just bored (30s Dopamine Swap)
+                  </button>
+                </div>
+
+                <!-- Dynamic Dopamine Swap Box -->
+                <div class="swap-box hidden" id="swapBox">
+                  <div class="swap-title">⚡ 30s Dopamine Swap!</div>
+                  <p class="swap-question" id="swapQuestion">Loading micro-challenge...</p>
+                  <div class="swap-answers" id="swapAnswers"></div>
+                  <button class="btn-secondary hidden" id="btnResumeScroll" style="margin-top: 8px;">Continue to Video (10m Limit)</button>
+                </div>
+
+                <!-- AI Roast Box -->
+                <div class="roast-box hidden" id="roastBox">
+                  <div class="roast-avatar">🤖 AI Roast</div>
+                  <div class="roast-text" id="roastText">"Bro... 15 minutes of scrolling? Go back to coding!"</div>
                 </div>
               </div>
-
-              <!-- INJECTED MINDFULSHIFT MODAL OVERLAY (Initially Hidden or Shown on Trigger) -->
-              <div class="mindful-overlay" id="mindfulOverlay">
-                <div class="overlay-card glass-card">
-                  <div class="overlay-badge">🧠 MINDFULSHIFT INTENT GATE</div>
-                  <h3>Hold on a sec! 🛑</h3>
-                  <p>Why are you opening short-form videos right now?</p>
-
-                  <div class="intent-options">
-                    <button class="intent-btn" data-intent="learning">
-                      📖 Looking for a specific tutorial / info
-                    </button>
-                    <button class="intent-btn intent-bored" data-intent="bored">
-                      🥱 Just bored / Habitual reflex
-                    </button>
-                  </div>
-
-                  <!-- Dynamic Dopamine Swap Box inside Modal -->
-                  <div class="swap-box hidden" id="swapBox">
-                    <div class="swap-title">⚡ 30-Second Dopamine Swap Activated!</div>
-                    <p class="swap-question" id="swapQuestion">Loading micro-challenge...</p>
-                    <div class="swap-answers" id="swapAnswers"></div>
-                    <button class="btn-secondary hidden" id="btnResumeScroll">Continue to Video (10m Limit)</button>
-                  </div>
-
-                  <!-- AI Roast Box -->
-                  <div class="roast-box hidden" id="roastBox">
-                    <div class="roast-avatar">🤖 AI Roast</div>
-                    <div class="roast-text" id="roastText">"Bro... 15 minutes of scrolling? Your code is waiting for you!"</div>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
-            <div class="mock-feed-actions">
-              <span>❤️ 12.4k</span>
-              <span>💬 840</span>
-              <span>🔄 Share</span>
-            </div>
+          </div>
+
+          <div class="mock-feed-actions">
+            <span>❤️ 12.4k</span>
+            <span>💬 840</span>
+            <span>🔄 Share</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== TAB 3: CONNECT BROWSERS & APPS (SUPER SIMPLE 14-YR-OLD GUIDE) ==================== -->
+    <!-- ==================== TAB 3: CONNECT / SETUP GUIDE ==================== -->
     <section class="tab-content" id="tab-connect">
       <div class="section-header">
-        <h2>⚡ Super Simple Setup Guide (For Everyone!)</h2>
-        <p>Set up MindfulShift on your computer or phone in under 60 seconds — no tech skills needed!</p>
+        <h2>⚡ Super Simple Setup</h2>
+        <p>Set up MindfulShift on your devices in 60 seconds!</p>
       </div>
 
-      <div class="connect-grid">
-        <!-- Laptop / Computer Card -->
+      <div class="connect-list">
+        <!-- Desktop Card -->
         <div class="card glass-card connect-card">
-          <div class="card-badge">DESKTOP / LAPTOP</div>
-          <div class="connect-header">
+          <div class="connect-head">
             <span class="connect-icon">💻</span>
-            <h3>Chrome / Edge / Brave</h3>
+            <h3>Computers (Chrome/Edge/Brave)</h3>
           </div>
-          <p>Get MindfulShift on your computer browser in 3 super simple steps:</p>
-
           <ol class="setup-steps">
-            <li><strong>Download Code</strong>: Go to <a href="https://github.com/maanasbhandari/mindfulshift" target="_blank" style="color: var(--accent-cyan);">our GitHub page</a> ➔ click green <strong>Code</strong> button ➔ click <strong>Download ZIP</strong> (and unzip it!).</li>
-            <li><strong>Open Extensions</strong>: Open Chrome and type <code>chrome://extensions</code> in the top bar. Turn ON <strong>"Developer mode"</strong> in the top-right corner.</li>
-            <li><strong>Click Load Unpacked</strong>: Click the <strong>"Load unpacked"</strong> button and select the <code>extension</code> folder!</li>
+            <li><strong>Download ZIP</strong>: Go to <a href="https://github.com/maanasbhandari/mindfulshift" target="_blank" style="color: var(--accent-cyan);">GitHub</a> ➔ click green <strong>Code</strong> ➔ click <strong>Download ZIP</strong>.</li>
+            <li><strong>Open Extensions</strong>: Go to <code>chrome://extensions</code> ➔ turn ON <strong>Developer mode</strong>.</li>
+            <li><strong>Load Unpacked</strong>: Click <strong>"Load unpacked"</strong> ➔ select the <code>extension</code> folder!</li>
           </ol>
-
-          <div class="card-footer">
-            <span class="status-indicator active"></span> 🎉 BOOM! Now YouTube Shorts & IG Reels are blocked automatically!
-          </div>
         </div>
 
-        <!-- Android Mobile Card -->
+        <!-- Android Card -->
         <div class="card glass-card connect-card">
-          <div class="card-badge badge-cyan">ANDROID PHONE</div>
-          <div class="connect-header">
+          <div class="connect-head">
             <span class="connect-icon">📱</span>
-            <h3>Android Phones & Tablets</h3>
+            <h3>Android Phone App</h3>
           </div>
-          <p>Use MindfulShift directly on your phone like a real app:</p>
-
           <ol class="setup-steps">
-            <li><strong>Open Page</strong>: Open this exact website in your Chrome browser on your Android phone.</li>
-            <li><strong>Tap 3 Dots</strong>: Tap the <strong>3 dots (⋮)</strong> in the top-right corner of Chrome.</li>
-            <li><strong>Add to Home Screen</strong>: Tap <strong>"Add to Home screen"</strong> (or Install App).</li>
+            <li>Open this website on Android Chrome.</li>
+            <li>Tap the <strong>3 dots (⋮)</strong> menu top-right.</li>
+            <li>Tap <strong>"Add to Home screen"</strong>!</li>
           </ol>
-
-          <button class="btn-secondary full-width" onclick="alert('⚡ Quick Tip: Open Chrome menu (⋮) -> Tap Add to Home Screen to install MindfulShift on your phone!')">📱 Show Android Install Shortcut</button>
         </div>
 
-        <!-- iOS Mobile Card -->
+        <!-- iPhone Card -->
         <div class="card glass-card connect-card">
-          <div class="card-badge badge-purple">IPHONE & IPAD</div>
-          <div class="connect-header">
+          <div class="connect-head">
             <span class="connect-icon">🍎</span>
             <h3>iPhone & iPad</h3>
           </div>
-          <p>Set up MindfulShift on your iPhone in 2 quick taps:</p>
-
           <ol class="setup-steps">
-            <li><strong>Open Safari</strong>: Open this exact website in Safari on your iPhone.</li>
-            <li><strong>Tap Share Button</strong>: Tap the Share button (the square with an up arrow 📤) at the bottom.</li>
-            <li><strong>Add to Home Screen</strong>: Scroll down and tap <strong>"Add to Home Screen"</strong>!</li>
+            <li>Open this website in Safari on iPhone.</li>
+            <li>Tap the <strong>Share button (📤)</strong> at bottom.</li>
+            <li>Scroll down ➔ tap <strong>"Add to Home Screen"</strong>!</li>
           </ol>
-
-          <button class="btn-secondary full-width" onclick="alert('⚡ Quick Tip: Tap Safari Share button (📤) -> Tap Add to Home Screen!')">📤 Show iPhone Install Guide</button>
         </div>
       </div>
     </section>
@@ -316,53 +284,61 @@
     <!-- ==================== TAB 4: MICRO-ARCADE ==================== -->
     <section class="tab-content" id="tab-arcade">
       <div class="section-header">
-        <h2>⚡ Dopamine-Swap Micro-Arcade</h2>
-        <p>Swap mindless scrolling for 30-second healthy brain boosts!</p>
+        <h2>⚡ Dopamine Arcade</h2>
+        <p>Swap mindless scrolling for 30s healthy brain boosts!</p>
       </div>
 
-      <div class="arcade-grid">
-        <div class="card glass-card challenge-card" id="cardCodeQuiz">
-          <div class="challenge-icon">💻</div>
-          <h3>Tech & Coding Trivia</h3>
-          <p>Fast 30-second quizzes on JavaScript, Python, and tech knowledge.</p>
-          <button class="btn-primary btn-play-challenge" data-type="code">Play Challenge (+30 pts)</button>
+      <div class="arcade-list">
+        <div class="card glass-card challenge-card">
+          <div class="arcade-card-head">
+            <span class="challenge-icon">💻</span>
+            <div>
+              <h3>Coding Quiz</h3>
+              <p>Fast 30s tech warmup quiz</p>
+            </div>
+          </div>
+          <button class="btn-primary btn-play-challenge full-width" data-type="code">Play (+30 pts)</button>
         </div>
 
-        <div class="card glass-card challenge-card" id="cardBreathing">
-          <div class="challenge-icon">🧘</div>
-          <h3>15s Box Breathing Reset</h3>
-          <p>Guided respiratory exercise to lower anxiety and restore mental clarity.</p>
-          <button class="btn-primary btn-play-challenge" data-type="breath">Start Reset (+20 pts)</button>
+        <div class="card glass-card challenge-card">
+          <div class="arcade-card-head">
+            <span class="challenge-icon">🧘</span>
+            <div>
+              <h3>Box Breathing</h3>
+              <p>15-second guided reset</p>
+            </div>
+          </div>
+          <button class="btn-primary btn-play-challenge full-width" data-type="breath">Start Reset (+20 pts)</button>
         </div>
 
-        <div class="card glass-card challenge-card" id="cardMath">
-          <div class="challenge-icon">🧩</div>
-          <h3>Speed Math & Logic</h3>
-          <p>Solve 3 quick mental math equations to wake up your analytical brain.</p>
-          <button class="btn-primary btn-play-challenge" data-type="math">Play Math (+25 pts)</button>
+        <div class="card glass-card challenge-card">
+          <div class="arcade-card-head">
+            <span class="challenge-icon">🧩</span>
+            <div>
+              <h3>Speed Math</h3>
+              <p>Solve 3 mental math puzzles</p>
+            </div>
+          </div>
+          <button class="btn-primary btn-play-challenge full-width" data-type="math">Play Math (+25 pts)</button>
         </div>
       </div>
 
       <!-- Challenge Play Modal Container -->
       <div class="card glass-card arcade-play-area hidden" id="arcadePlayArea">
         <div class="play-header">
-          <h3 id="arcadeTitle">Coding Trivia</h3>
-          <button class="btn-close-arcade" id="btnCloseArcade">✕ Close</button>
+          <h3 id="arcadeTitle">Coding Quiz</h3>
+          <button class="btn-close-arcade" id="btnCloseArcade">✕</button>
         </div>
-        <div class="play-body" id="arcadeBody">
-          <!-- Dynamic Arcade Challenge Content -->
-        </div>
+        <div class="play-body" id="arcadeBody"></div>
       </div>
     </section>
 
-    <!-- ==================== TAB 5: PRESENTATION PITCH DECK ==================== -->
+    <!-- ==================== TAB 5: PRESENTATION DECK ==================== -->
     <section class="tab-content" id="tab-presentation">
-      <div class="section-header flex-between">
-        <div>
-          <h2>📽️ Hackathon Pitch Deck</h2>
-          <p>Interactive 5-slide pitch presentation deck built for judges.</p>
-        </div>
-        <a href="presentation.html" target="_blank" class="btn-primary">Launch Fullscreen Deck ↗</a>
+      <div class="section-header">
+        <h2>📽️ Pitch Presentation</h2>
+        <p>5-slide pitch presentation deck for hackathon judges.</p>
+        <a href="presentation.html" target="_blank" class="btn-primary" style="margin-top: 10px; display: inline-flex;">Launch Fullscreen Pitch Deck ↗</a>
       </div>
 
       <div class="presentation-frame-wrap card glass-card">
